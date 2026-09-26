@@ -1,0 +1,199 @@
+.reporte-container {
+  padding: 24px;
+}
+
+.reporte-screen h2 {
+  margin: 0 0 16px;
+}
+
+.reporte-filters {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.reporte-filters label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.reporte-filters input[type='date'] {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.error-message {
+  background: #fdecec;
+  color: #b91c1c;
+  border: 1px solid #f5c2c2;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.reporte-summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #777;
+}
+
+.stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #222;
+}
+
+.reporte-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.reporte-table th,
+.reporte-table td {
+  border: 1px solid #eee;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.reporte-table th {
+  background: #f8f9fa;
+  color: #333;
+  font-weight: 600;
+}
+
+.reporte-table td:nth-child(3),
+.reporte-table td:nth-child(2) {
+  text-align: right;
+}
+
+.reporte-table tfoot td {
+  font-weight: 700;
+  background: #f8f9fa;
+  text-align: right;
+}
+
+.reporte-table tfoot td:first-child {
+  text-align: right;
+}
+
+.empty-cell {
+  color: #888;
+  text-align: center !important;
+}
+
+.table-wrapper {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.report-ticket {
+  display: none;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .report-ticket,
+  .report-ticket * {
+    visibility: visible;
+  }
+
+  .report-ticket {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 80mm;
+    background: white;
+    border: none;
+    padding: 8mm;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #111;
+    line-height: 1.5;
+  }
+
+  .report-ticket .ticket-title {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+
+  .report-ticket .ticket-subtitle {
+    font-size: 11px;
+    color: #444;
+    text-align: center;
+  }
+
+  .report-ticket .ticket-divider {
+    text-align: center;
+    letter-spacing: 2px;
+    margin: 4px 0;
+  }
+
+  .report-ticket .ticket-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .report-ticket .ticket-line span {
+    color: #444;
+  }
+
+  .report-ticket .ticket-total {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .report-ticket .ticket-empty {
+    text-align: center;
+    color: #888;
+    padding: 8px 0;
+  }
+
+  .report-ticket .ticket-footer {
+    text-align: center;
+    margin-top: 4px;
+    font-size: 11px;
+  }
+}

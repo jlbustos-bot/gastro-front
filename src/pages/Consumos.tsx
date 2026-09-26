@@ -245,7 +245,7 @@ const ConsumosPage = () => {
       header: [
         { label: 'Consumo', value: `#${payingConsumo.id}` },
         { label: 'Mesa', value: String(payingConsumo.mesa_numero ?? payingConsumo.mesa_id) },
-        { label: 'Cliente', value: payingConsumo.cliente_nombre || 'Sin cliente' },
+        { label: 'Cliente', value: payingConsumo.nombre || payingConsumo.cliente_nombre || 'Sin cliente' },
         { label: 'Fecha', value: new Date().toLocaleString() },
       ],
       items: ticketItems.map((it) => ({
@@ -309,7 +309,7 @@ const ConsumosPage = () => {
                   <div className="mesa-consumo-abierto">
                     <p>
                       <strong>Consumo #{consumoAbierto.id}:</strong>{' '}
-                      {consumoAbierto.cliente_nombre || 'Sin cliente'} - $
+                      {consumoAbierto.nombre || consumoAbierto.cliente_nombre || 'Sin cliente'} - $
                       {Number(consumoAbierto.total).toFixed(2)}
                     </p>
                   </div>
@@ -357,7 +357,7 @@ const ConsumosPage = () => {
                 <tr key={item.id}>
                   <td>#{item.id}</td>
                   <td>Mesa {item.mesa_numero ?? item.mesa_id}</td>
-                  <td>{item.cliente_nombre || '—'}</td>
+                  <td>{item.nombre || item.cliente_nombre || '—'}</td>
                   <td>
                     <span className={`badge ${item.estado}`}>
                       {estadoLabels[item.estado] ?? item.estado}
@@ -390,7 +390,7 @@ const ConsumosPage = () => {
                 <h2>Cobrar consumo #{payingConsumo.id}</h2>
                 <p className="subtitle">
                   Mesa {payingConsumo.mesa_numero ?? payingConsumo.mesa_id} ·{' '}
-                  {payingConsumo.cliente_nombre || 'Sin cliente'} ·{' '}
+                  {payingConsumo.nombre || payingConsumo.cliente_nombre || 'Sin cliente'} ·{' '}
                   <strong>Total ${ticketTotal.toFixed(2)}</strong>
                 </p>
               </div>
@@ -479,7 +479,7 @@ const ConsumosPage = () => {
                   <div className="ticket-divider">-</div>
                   <div className="ticket-line"><span>Consumo:</span> <strong>#{payingConsumo.id}</strong></div>
                   <div className="ticket-line"><span>Mesa:</span> <strong>{payingConsumo.mesa_numero ?? payingConsumo.mesa_id}</strong></div>
-                  <div className="ticket-line"><span>Cliente:</span> <strong>{payingConsumo.cliente_nombre || 'Sin cliente'}</strong></div>
+                  <div className="ticket-line"><span>Cliente:</span> <strong>{payingConsumo.nombre || payingConsumo.cliente_nombre || 'Sin cliente'}</strong></div>
                   <div className="ticket-line"><span>Fecha:</span> <strong>{new Date().toLocaleString()}</strong></div>
                   <div className="ticket-divider">-</div>
                   {ticketItems.length === 0 ? (

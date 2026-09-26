@@ -157,7 +157,7 @@ const ReporteVentaDiaria = () => {
                       <tr key={consumo.id}>
                         <td>{index + 1}</td>
                         <td>{consumo.mesa_numero}</td>
-                        <td>{consumo.cliente_nombre || '—'}</td>
+                        <td>{consumo.nombre || consumo.cliente_nombre || '—'}</td>
                         <td>{consumo.medio_pago_nombre || '—'}</td>
                         <td>${Number(consumo.total).toFixed(2)}</td>
                       </tr>

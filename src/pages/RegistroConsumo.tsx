@@ -24,6 +24,7 @@ const estadoLabels: Record<string, string> = {
 const createEmptyForm = () => ({
   mesa_id: 0,
   cliente_id: null as number | null,
+  nombre: '',
   estado: 'abierta' as Consumo['estado'],
   items: [] as FormItem[],
 });
@@ -63,6 +64,7 @@ const RegistroConsumo = () => {
           setFormData({
             mesa_id: consumo.mesa_id,
             cliente_id: consumo.cliente_id ?? null,
+            nombre: consumo.nombre ?? consumo.cliente_nombre ?? '',
             estado: consumo.estado,
             items: (consumo.items ?? []).map((it: ConsumoItem) => ({
               producto_id: it.producto_id,
@@ -88,6 +90,7 @@ const RegistroConsumo = () => {
             setFormData({
               mesa_id: detail.mesa_id,
               cliente_id: detail.cliente_id ?? null,
+              nombre: detail.nombre ?? detail.cliente_nombre ?? '',
               estado: detail.estado,
               items: (detail.items ?? []).map((it: ConsumoItem) => ({
                 producto_id: it.producto_id,
@@ -151,6 +154,7 @@ const RegistroConsumo = () => {
     const payload = {
       mesa_id: Number(formData.mesa_id),
       cliente_id: formData.cliente_id || null,
+      nombre: formData.nombre.trim(),
       estado: formData.estado,
       items: validItems.map((item) => ({ producto_id: item.producto_id as number, cantidad: item.cantidad || 1 })),
     };
@@ -213,7 +217,15 @@ const RegistroConsumo = () => {
             <select
               name="cliente_id"
               value={formData.cliente_id ?? ''}
-              onChange={(e) => setFormData((prev) => ({ ...prev, cliente_id: e.target.value === '' ? null : Number(e.target.value) }))}
+              onChange={(e) => {
+                const clienteId = e.target.value === '' ? null : Number(e.target.value);
+                const clienteSel = clienteOptions.find((c) => c.id === clienteId);
+                setFormData((prev) => ({
+                  ...prev,
+                  cliente_id: clienteId,
+                  nombre: clienteSel ? `${clienteSel.nombre} ${clienteSel.apellido}`.trim() : prev.nombre,
+                }));
+              }}
             >
               <option value="">Sin cliente</option>
               {clienteOptions.map((cliente) => (
@@ -223,6 +235,18 @@ const RegistroConsumo = () => {
                 </option>
               ))}
             </select>
+          </div>
+          <div className="form-group">
+            <label>Nombre</label>
+            <input
+              type="text"
+              name="nombre"
+              maxLength={255}
+              value={formData.nombre}
+              disabled={formData.cliente_id !== null}
+              placeholder={formData.cliente_id !== null ? 'Toma el nombre del cliente seleccionado' : 'Escriba un nombre libre'}
+              onChange={(e) => setFormData((prev) => ({ ...prev, nombre: e.target.value }))}
+            />
           </div>
           <div className="form-group">
             <label>Estado</label>

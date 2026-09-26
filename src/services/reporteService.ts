@@ -12,6 +12,7 @@ export interface VentaDiariaConsumo {
   id: number;
   mesa_numero: number;
   cliente_nombre: string | null;
+  nombre?: string | null;
   total: number;
   medio_pago_nombre: string | null;
   created_at?: string;

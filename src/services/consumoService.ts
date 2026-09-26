@@ -24,6 +24,7 @@ export interface Consumo {
   mesa_numero?: number;
   cliente_id?: number | null;
   cliente_nombre?: string;
+  nombre?: string;
   medio_pago_id?: number | null;
   medio_pago_nombre?: string;
   estado: 'abierta' | 'pagada' | 'anulada';
@@ -44,6 +45,7 @@ export interface ConsumoItemInput {
 export interface ConsumoInput {
   mesa_id: number;
   cliente_id?: number | null;
+  nombre?: string;
   medio_pago_id?: number | null;
   estado?: Consumo['estado'];
   items: ConsumoItemInput[];

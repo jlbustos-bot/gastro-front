@@ -79,6 +79,8 @@ const Layout: FC<LayoutProps> = ({ children, setIsAuthenticated }) => {
                   <Link to="/medios-pago" onClick={() => setMenuOpen(false)}>Medios de Pago</Link>
                   <Link to="/parametros-productos" onClick={() => setMenuOpen(false)}>Parámetros Productos</Link>
                   <Link to="/parametros-impresion" onClick={() => setMenuOpen(false)}>Parámetro de Impresión</Link>
+                  <Link to="/canillas" onClick={() => setMenuOpen(false)}>Canillas</Link>
+                  <Link to="/pinchadas" onClick={() => setMenuOpen(false)}>Pinchadas de Canillas</Link>
                   <Link to="/usuarios" onClick={() => setMenuOpen(false)}>Usuarios</Link>
                   <Link to="/condiciones-cta-cte" onClick={() => setMenuOpen(false)}>Condiciones Cta. Cte.</Link>
                 </div>

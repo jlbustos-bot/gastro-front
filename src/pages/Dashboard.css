@@ -109,6 +109,81 @@
   font-size: 15px;
 }
 
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 20px;
+  align-items: start;
+}
+
+.dashboard-main {
+  min-width: 0;
+}
+
+.dashboard-side {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-side h2 {
+  color: #333;
+  font-size: 16px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.canillas-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.canilla-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.canilla-item:last-child {
+  border-bottom: none;
+}
+
+.canilla-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.canilla-nombre {
+  font-weight: 600;
+  color: #555;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.canilla-cerveza {
+  color: #333;
+  font-size: 14px;
+  min-width: 0;
+  flex: 1;
+  text-align: right;
+}
+
+.canilla-precio {
+  color: #667eea;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

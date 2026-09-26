@@ -163,7 +163,6 @@ const RegistroConsumo = () => {
         await consumoService.create(payload);
       }
       await consumoService.getAll();
-      alert(editingId ? 'Consumo actualizado correctamente.' : 'Consumo registrado correctamente.');
       navigate('/consumos');
     } catch (error: any) {
       console.error('Error al guardar consumo:', error);

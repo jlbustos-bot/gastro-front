@@ -597,6 +597,11 @@
 }
 
 @media print {
+  @page {
+    size: 80mm auto;
+    margin: 0;
+  }
+
   body * {
     visibility: hidden;
   }
@@ -613,6 +618,8 @@
     width: 80mm;
     border: none;
     padding: 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
 }
 

@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { consumoService, Consumo } from '../services/consumoService';
 import { mesaService, Mesa } from '../services/mesaService';
 import { medioPagoService, MedioPago } from '../services/medioPagoService';
+import { parametroImpresionService } from '../services/parametroImpresionService';
+import { printTicketUsb } from '../utils/usbPrint';
+import { EscPosTicket } from '../utils/escpos';
 import './Mesas.css';
 import './Consumos.css';
 
@@ -43,6 +46,7 @@ const ConsumosPage = () => {
   const [paymentDetail, setPaymentDetail] = useState<Consumo | null>(null);
   const [payments, setPayments] = useState<PaymentDraft[]>([]);
   const [paying, setPaying] = useState(false);
+  const [printCopies, setPrintCopies] = useState(1);
 
   const fetchItems = async () => {
     try {
@@ -82,6 +86,19 @@ const ConsumosPage = () => {
       setLoading(false);
     };
     loadData();
+  }, []);
+
+  useEffect(() => {
+    parametroImpresionService
+      .getAll({ activo: true })
+      .then((params) => {
+        if (params && params.length > 0) {
+          setPrintCopies(Number(params[0]?.cantidad_copias ?? 1) || 1);
+        }
+      })
+      .catch(() => {
+        // si falla la API, se mantiene la copia por defecto
+      });
   }, []);
 
   const getConsumoPorMesa = (mesaId?: number): Consumo | undefined =>
@@ -217,9 +234,42 @@ const ConsumosPage = () => {
     }
   };
 
-  const handlePrintTicket = () => {
-    window.print();
+  const handlePrintTicket = async () => {
+    if (!payingConsumo) {
+      return;
+    }
+
+    const esPosTicket: EscPosTicket = {
+      title: 'GastroSoft',
+      subtitle: 'Sistema de Gestión Gastronómica',
+      header: [
+        { label: 'Consumo', value: `#${payingConsumo.id}` },
+        { label: 'Mesa', value: String(payingConsumo.mesa_numero ?? payingConsumo.mesa_id) },
+        { label: 'Cliente', value: payingConsumo.cliente_nombre || 'Sin cliente' },
+        { label: 'Fecha', value: new Date().toLocaleString() },
+      ],
+      items: ticketItems.map((it) => ({
+        name: it.producto_nombre || `Producto #${it.producto_id}`,
+        qty: Number(it.cantidad) || 1,
+        price: Number(it.precio) || 0,
+      })),
+      total: ticketTotal,
+      payments: effectivePayments.map((p) => ({
+        label: money(round2(parseFloat(p.monto) || 0)),
+        value: medioNombre(p.medio_pago_id),
+      })),
+      footer: '¡Gracias por su visita!',
+      copies: printCopies,
+    };
+
+    const outcome = await printTicketUsb(esPosTicket);
+
+    if (outcome !== 'printed') {
+      window.print();
+    }
   };
+
+  const money = (value: number): string => `$${value.toFixed(2)}`;
 
   const ticketItems = paymentDetail?.items ?? [];
   const medioNombre = (id: number): string =>

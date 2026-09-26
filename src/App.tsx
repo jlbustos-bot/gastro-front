@@ -16,6 +16,7 @@ import ProductoProveedoresPage from './pages/ProductoProveedores';
 import ParametrosProductosPage from './pages/ParametrosProductos';
 import UsuariosPage from './pages/Usuarios';
 import CondicionesCtaCtePage from './pages/CondicionesCtaCte';
+import ParametrosImpresionPage from './pages/ParametrosImpresion';
 import ReporteVentaDiaria from './pages/ReporteVentaDiaria';
 import Layout from './components/Layout';
 import './App.css';
@@ -62,6 +63,7 @@ function App() {
                   <Route path="/parametros-productos" element={<ParametrosProductosPage />} />
                   <Route path="/usuarios" element={<UsuariosPage />} />
                   <Route path="/condiciones-cta-cte" element={<CondicionesCtaCtePage />} />
+                  <Route path="/parametros-impresion" element={<ParametrosImpresionPage />} />
                   <Route path="/consumos" element={<ConsumosPage />} />
                   <Route path="/reportes/venta-diaria" element={<ReporteVentaDiaria />} />
                   <Route path="/consumos/mesa/:mesaId" element={<RegistroConsumo />} />

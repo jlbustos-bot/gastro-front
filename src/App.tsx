@@ -6,6 +6,7 @@ import Restaurants from './pages/Restaurants';
 import ProductosPage from './pages/Productos';
 import Grupo1ProdPage from './pages/Grupo1Prod';
 import Grupo2ProdPage from './pages/Grupo2Prod';
+import RecetasPage from './pages/Recetas';
 import ClientesPage from './pages/Clientes';
 import MesasPage from './pages/Mesas';
 import ConsumosPage from './pages/Consumos';
@@ -57,6 +58,7 @@ function App() {
                   <Route path="/productos" element={<ProductosPage />} />
                   <Route path="/grupo1prod" element={<Grupo1ProdPage />} />
                   <Route path="/grupo2prod" element={<Grupo2ProdPage />} />
+                  <Route path="/recetas" element={<RecetasPage />} />
                   <Route path="/clientes" element={<ClientesPage />} />
                   <Route path="/mesas" element={<MesasPage />} />
                   <Route path="/medios-pago" element={<MediosPagoPage />} />

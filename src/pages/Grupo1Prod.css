@@ -181,6 +181,16 @@
   padding: 28px;
 }
 
+.margen-positivo {
+  color: #2e9b57;
+  font-weight: 700;
+}
+
+.margen-negativo {
+  color: #dc3545;
+  font-weight: 700;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

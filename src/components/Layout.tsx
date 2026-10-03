@@ -12,8 +12,10 @@ const Layout: FC<LayoutProps> = ({ children, setIsAuthenticated }) => {
   const user = authService.getStoredUser();
   const [menuOpen, setMenuOpen] = useState(false);
   const [comprasOpen, setComprasOpen] = useState(false);
+  const [articulosOpen, setArticulosOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const comprasRef = useRef<HTMLDivElement | null>(null);
+  const articulosRef = useRef<HTMLDivElement | null>(null);
 
   const handleLogout = () => {
     authService.logout();
@@ -27,6 +29,9 @@ const Layout: FC<LayoutProps> = ({ children, setIsAuthenticated }) => {
       }
       if (comprasRef.current && !comprasRef.current.contains(event.target as Node)) {
         setComprasOpen(false);
+      }
+      if (articulosRef.current && !articulosRef.current.contains(event.target as Node)) {
+        setArticulosOpen(false);
       }
     };
 
@@ -45,6 +50,24 @@ const Layout: FC<LayoutProps> = ({ children, setIsAuthenticated }) => {
             <Link to="/">Principal</Link>
             <Link to="/consumos">Consumos</Link>
             <Link to="/reportes/venta-diaria">Venta diaria</Link>
+            <div className="dropdown" ref={articulosRef}>
+              <button
+                className={`dropdown-toggle ${articulosOpen ? 'active' : ''}`}
+                type="button"
+                onClick={() => setArticulosOpen((prev) => !prev)}
+              >
+                Articulos <span className="dropdown-caret">▾</span>
+              </button>
+              {articulosOpen && (
+                <div className="dropdown-menu">
+                  <Link to="/productos" onClick={() => setArticulosOpen(false)}>Productos</Link>
+                  <Link to="/grupo1prod" onClick={() => setArticulosOpen(false)}>Grupo 1 Prod</Link>
+                  <Link to="/grupo2prod" onClick={() => setArticulosOpen(false)}>Grupo 2 Prod</Link>
+                  <Link to="/recetas" onClick={() => setArticulosOpen(false)}>Recetas</Link>
+                  <Link to="/parametros-productos" onClick={() => setArticulosOpen(false)}>Parámetros Productos</Link>
+                </div>
+              )}
+            </div>
             <div className="dropdown" ref={comprasRef}>
               <button
                 className={`dropdown-toggle ${comprasOpen ? 'active' : ''}`}
@@ -71,13 +94,9 @@ const Layout: FC<LayoutProps> = ({ children, setIsAuthenticated }) => {
               {menuOpen && (
                 <div className="dropdown-menu">
                   <Link to="/restaurants" onClick={() => setMenuOpen(false)}>Restaurantes</Link>
-                  <Link to="/productos" onClick={() => setMenuOpen(false)}>Productos</Link>
-                  <Link to="/grupo1prod" onClick={() => setMenuOpen(false)}>Grupo 1 Prod</Link>
-                  <Link to="/grupo2prod" onClick={() => setMenuOpen(false)}>Grupo 2 Prod</Link>
                   <Link to="/clientes" onClick={() => setMenuOpen(false)}>Clientes</Link>
                   <Link to="/mesas" onClick={() => setMenuOpen(false)}>Mesas</Link>
                   <Link to="/medios-pago" onClick={() => setMenuOpen(false)}>Medios de Pago</Link>
-                  <Link to="/parametros-productos" onClick={() => setMenuOpen(false)}>Parámetros Productos</Link>
                   <Link to="/parametros-impresion" onClick={() => setMenuOpen(false)}>Parámetro de Impresión</Link>
                   <Link to="/canillas" onClick={() => setMenuOpen(false)}>Canillas</Link>
                   <Link to="/pinchadas" onClick={() => setMenuOpen(false)}>Pinchadas de Canillas</Link>

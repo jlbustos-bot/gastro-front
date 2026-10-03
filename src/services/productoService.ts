@@ -11,6 +11,7 @@ export interface Producto {
   proveedor_id?: number | null;
   proveedor_nombre?: string | null;
   precioventa: number;
+  preciocompra?: number;
   activo: boolean;
 }
 

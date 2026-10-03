@@ -1,0 +1,174 @@
+.productos-filtros {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.productos-filtros select,
+.productos-filtros input {
+  padding: 9px 11px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  background: white;
+  box-sizing: border-box;
+}
+
+.productos-busqueda {
+  flex: 1 1 260px;
+  min-width: 220px;
+}
+
+.productos-busqueda input {
+  width: 100%;
+}
+
+.productos-resumen {
+  color: #777;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.productos-tabla-wrapper {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+}
+
+.productos-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 980px;
+}
+
+.productos-tabla th,
+.productos-tabla td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #eceff3;
+  color: #444;
+  white-space: nowrap;
+}
+
+.productos-tabla thead th {
+  background: #f7f8fb;
+  color: #555;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.productos-tabla tbody tr:hover {
+  background: #fafbff;
+}
+
+.productos-tabla tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.fila-inactiva {
+  opacity: 0.6;
+}
+
+.col-acciones {
+  width: 84px;
+}
+
+.col-id {
+  width: 52px;
+  color: #777;
+}
+
+.col-nombre {
+  font-weight: 600;
+  color: #333;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.col-numero {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.th-orden {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+.th-orden:hover {
+  color: #667eea;
+}
+
+.productos-tabla .col-acciones {
+  text-align: left;
+}
+
+.productos-tabla .btn-icon {
+  border: none;
+  background: #eef2ff;
+  color: #3730a3;
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.productos-tabla .btn-icon:hover {
+  background: #e0e7ff;
+}
+
+.productos-tabla .btn-icon-danger {
+  background: #fde8e8;
+  color: #b42318;
+}
+
+.productos-tabla .btn-icon-danger:hover {
+  background: #fbcccc;
+}
+
+.celda-vacia {
+  text-align: center;
+  color: #777;
+  padding: 28px;
+}
+
+.productos-paginacion {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: #555;
+  font-size: 13px;
+}
+
+.productos-paginacion .btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .productos-filtros select {
+    flex: 1 1 140px;
+  }
+}
